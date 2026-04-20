@@ -18,7 +18,7 @@ export default function Footer() {
               className="mb-4"
             />
             <p className="text-gray-400 text-sm leading-relaxed">
-              Egypt's premier distributor of premium automotive workshop equipment. 45+ years of expertise, 14 international brands.
+              Egypt&apos;s premier distributor of premium automotive workshop equipment. 45+ years of expertise, 14 international brands.
             </p>
           </div>
 
