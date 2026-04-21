@@ -1,4 +1,4 @@
-// src/app/page.tsx
+// src/app/[locale]/page.tsx
 import { client } from '@/sanity/lib/client'
 import { CATEGORIES_QUERY } from '@/sanity/lib/queries'
 import type { SanityCategory } from '@/sanity/lib/types'

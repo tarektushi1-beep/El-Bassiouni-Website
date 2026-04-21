@@ -12,7 +12,7 @@ interface SiteChromeProps {
 
 export default function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname()
-  const isStudio = pathname?.startsWith('/studio')
+  const isStudio = pathname?.includes('/studio')
 
   if (isStudio) {
     return <>{children}</>
