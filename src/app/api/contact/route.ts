@@ -2,8 +2,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 const DESTINATION_EMAIL = process.env.CONTACT_DESTINATION_EMAIL ?? 'info@elbassiouni.com'
+
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY ?? 'missing-key')
+}
 
 interface ContactFormData {
   name: string
@@ -33,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     const { name, company, email, phone, subject, message } = data as ContactFormData
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: 'Elbassiouni Website <noreply@elbassiouni.com>',
       to: DESTINATION_EMAIL,
       replyTo: email,
