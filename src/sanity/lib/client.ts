@@ -14,7 +14,7 @@ const sanityClient = projectId
 export const client = {
   fetch: async <T>(
     query: string,
-    params?: Record<string, unknown>,
+    params: Record<string, unknown> = {},
     options?: Record<string, unknown>
   ): Promise<T> => {
     if (!sanityClient) return [] as unknown as T

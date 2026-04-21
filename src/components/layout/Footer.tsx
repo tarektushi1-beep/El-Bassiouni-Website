@@ -6,9 +6,9 @@ import { CATEGORIES_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import type { SanityCategory, SiteSettings } from '@/sanity/lib/types'
 
 export default async function Footer() {
-  const [categories, settings]: [SanityCategory[], SiteSettings | null] = await Promise.all([
-    client.fetch(CATEGORIES_QUERY, {}, { next: { revalidate: 3600 } }),
-    client.fetch(SITE_SETTINGS_QUERY, {}, { next: { revalidate: 3600 } }),
+  const [categories, settings] = await Promise.all([
+    client.fetch<SanityCategory[]>(CATEGORIES_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch<SiteSettings | null>(SITE_SETTINGS_QUERY, {}, { next: { revalidate: 3600 } }),
   ])
 
   const phone = settings?.phone ?? '+20 XX XXXX XXXX'
