@@ -8,6 +8,8 @@ const config: Config = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
+    '^@sanity/image-url$': '<rootDir>/__mocks__/sanity/imageUrlBuilder.ts',
+    '^@sanity/client$': '<rootDir>/__mocks__/sanity/client.ts',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 }
