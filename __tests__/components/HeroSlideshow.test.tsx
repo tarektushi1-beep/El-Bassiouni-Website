@@ -1,5 +1,5 @@
 // __tests__/components/HeroSlideshow.test.tsx
-import { render, screen, act } from '@testing-library/react'
+import { render, act } from '@testing-library/react'
 import HeroSlideshow from '@/components/home/HeroSlideshow'
 
 describe('HeroSlideshow', () => {
