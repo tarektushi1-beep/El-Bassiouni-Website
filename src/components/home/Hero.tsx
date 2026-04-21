@@ -1,12 +1,11 @@
 // src/components/home/Hero.tsx
 import Button from '@/components/ui/Button'
+import HeroSlideshow from './HeroSlideshow'
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-eb-black flex items-center overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-eb-red/20 to-transparent" />
-      </div>
+      <HeroSlideshow />
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-eb-red" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
