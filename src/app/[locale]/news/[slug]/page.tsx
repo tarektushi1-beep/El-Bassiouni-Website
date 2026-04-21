@@ -53,7 +53,7 @@ export default async function NewsArticlePage({ params }: Props) {
           <p className="text-gray-500 text-lg leading-relaxed mb-8">{article.excerpt}</p>
           {article.content && article.content.length > 0 ? (
             <div className="prose prose-gray max-w-none">
-              <PortableText value={article.content} />
+              <PortableText value={article.content as Parameters<typeof PortableText>[0]['value']} />
             </div>
           ) : (
             <p className="text-gray-400">{t('noContent')}</p>
