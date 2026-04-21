@@ -1,12 +1,16 @@
 // src/components/home/TrustStrip.tsx
-const stats = [
-  { value: '45+', label: 'Years of Experience' },
-  { value: '14', label: 'International Brands' },
-  { value: '6', label: 'Equipment Categories' },
-  { value: '1000+', label: 'Workshops Equipped' },
-]
+import { getTranslations } from 'next-intl/server'
 
-export default function TrustStrip() {
+export default async function TrustStrip() {
+  const t = await getTranslations('trust')
+
+  const stats = [
+    { value: '45+', label: t('years') },
+    { value: '14', label: t('brands') },
+    { value: '6', label: t('categories') },
+    { value: '1000+', label: t('workshops') },
+  ]
+
   return (
     <section className="bg-eb-red py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

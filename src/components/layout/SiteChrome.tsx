@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppButton from './WhatsAppButton'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 
 interface SiteChromeProps {
   children: React.ReactNode
@@ -12,7 +13,7 @@ interface SiteChromeProps {
 
 export default function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname()
-  const isStudio = pathname?.startsWith('/studio')
+  const isStudio = pathname?.includes('/studio')
 
   if (isStudio) {
     return <>{children}</>
@@ -24,6 +25,7 @@ export default function SiteChrome({ children }: SiteChromeProps) {
       <main className="pt-20">{children}</main>
       <Footer />
       <WhatsAppButton />
+      <LanguageSwitcher />
     </>
   )
 }

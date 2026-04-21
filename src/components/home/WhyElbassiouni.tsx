@@ -1,32 +1,23 @@
 // src/components/home/WhyElbassiouni.tsx
+import { getTranslations } from 'next-intl/server'
 import SectionTitle from '@/components/ui/SectionTitle'
 
-const reasons = [
-  {
-    title: '45+ Years of Expertise',
-    description: 'Since 1980, Elbassiouni has been the trusted name in automotive equipment across Egypt. Our deep market knowledge means we recommend the right solution for your specific needs.',
-  },
-  {
-    title: 'World-Class Brands',
-    description: 'We represent only the most respected international manufacturers — Hunter Engineering, Rotary Lift, Maha Haldenwang, and 11 more — giving you access to the best equipment available.',
-  },
-  {
-    title: 'Full After-Sales Support',
-    description: "From installation and training to maintenance contracts and spare parts, our support team ensures your equipment performs at its best throughout its lifetime.",
-  },
-  {
-    title: 'Certified & Compliant',
-    description: 'All equipment we supply meets Egyptian regulatory requirements. Our inspection lane systems are fully compliant with traffic authority standards.',
-  },
-]
+export default async function WhyElbassiouni() {
+  const t = await getTranslations('why')
 
-export default function WhyElbassiouni() {
+  const reasons = [
+    { title: t('r1Title'), description: t('r1Desc') },
+    { title: t('r2Title'), description: t('r2Desc') },
+    { title: t('r3Title'), description: t('r3Desc') },
+    { title: t('r4Title'), description: t('r4Desc') },
+  ]
+
   return (
     <section className="py-24 bg-eb-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          title="Why Choose Elbassiouni"
-          subtitle="Four decades of trust, built one workshop at a time."
+          title={t('heading')}
+          subtitle={t('subheading')}
           centered
           light
         />

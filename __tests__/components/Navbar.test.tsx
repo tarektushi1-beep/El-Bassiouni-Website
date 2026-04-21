@@ -2,6 +2,11 @@
 import { render, screen } from '@testing-library/react'
 import Navbar from '@/components/layout/Navbar'
 
+jest.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+  useLocale: () => 'en',
+}))
+
 describe('Navbar', () => {
   it('renders the Elbassiouni logo', () => {
     render(<Navbar />)

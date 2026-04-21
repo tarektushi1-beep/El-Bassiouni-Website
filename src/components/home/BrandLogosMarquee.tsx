@@ -1,15 +1,18 @@
 // src/components/home/BrandLogosMarquee.tsx
+import { getTranslations } from 'next-intl/server'
 import type { SanityBrand } from '@/sanity/lib/types'
 
 interface BrandLogosMarqueeProps {
   brands: SanityBrand[]
 }
 
-export default function BrandLogosMarquee({ brands }: BrandLogosMarqueeProps) {
+export default async function BrandLogosMarquee({ brands }: BrandLogosMarqueeProps) {
+  const t = await getTranslations('brands')
+
   return (
     <section className="bg-eb-gray py-12 overflow-hidden">
       <p className="text-center font-aspire text-xs tracking-[0.3em] uppercase text-gray-500 mb-8">
-        Our Brand Portfolio
+        {t('heading')}
       </p>
       <div className="flex animate-marquee whitespace-nowrap">
         {[...brands, ...brands].map((brand, i) => (
