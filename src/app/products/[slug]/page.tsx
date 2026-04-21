@@ -1,4 +1,5 @@
 // src/app/products/[slug]/page.tsx
+import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { client } from '@/sanity/lib/client'
@@ -14,19 +15,23 @@ interface Props {
   params: { slug: string }
 }
 
+const getCategory = cache((slug: string) =>
+  client.fetch<SanityCategory | null>(CATEGORY_QUERY, { slug })
+)
+
 export async function generateStaticParams() {
   const slugs: string[] = await client.fetch(CATEGORY_SLUGS_QUERY)
   return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const category: SanityCategory | null = await client.fetch(CATEGORY_QUERY, { slug: params.slug })
+  const category = await getCategory(params.slug)
   if (!category) return {}
   return { title: category.name, description: category.description }
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const category: SanityCategory | null = await client.fetch(CATEGORY_QUERY, { slug: params.slug })
+  const category = await getCategory(params.slug)
   if (!category) notFound()
 
   return (
