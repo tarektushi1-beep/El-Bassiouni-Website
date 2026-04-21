@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "allCategories": "All Categories",
+    "services": "Services",
+    "news": "News",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Est. 1980 · Cairo, Egypt",
+    "line1": "Egypt's Premier",
+    "line2": "Automotive",
+    "line3": "Equipment Partner",
+    "description": "45+ years equipping Egypt's workshops, dealerships, and fleet operators with the world's most trusted automotive equipment brands.",
+    "cta1": "Explore Our Brands",
+    "cta2": "Contact Us"
+  },
+  "trust": {
+    "years": "Years of Experience",
+    "brands": "International Brands",
+    "categories": "Equipment Categories",
+    "workshops": "Workshops Equipped"
+  },
+  "categories": {
+    "heading": "Equipment Categories",
+    "subheading": "Six specialized categories covering every corner of the professional automotive workshop.",
+    "viewBrands": "View Brands"
+  },
+  "brands": {
+    "heading": "Our Brand Portfolio"
+  },
+  "why": {
+    "heading": "Why Choose Elbassiouni",
+    "subheading": "Four decades of trust, built one workshop at a time.",
+    "r1Title": "45+ Years of Expertise",
+    "r1Desc": "Since 1980, Elbassiouni has been the trusted name in automotive equipment across Egypt. Our deep market knowledge means we recommend the right solution for your specific needs.",
+    "r2Title": "World-Class Brands",
+    "r2Desc": "We represent only the most respected international manufacturers — Hunter Engineering, Rotary Lift, Maha Haldenwang, and 11 more — giving you access to the best equipment available.",
+    "r3Title": "Full After-Sales Support",
+    "r3Desc": "From installation and training to maintenance contracts and spare parts, our support team ensures your equipment performs at its best throughout its lifetime.",
+    "r4Title": "Certified & Compliant",
+    "r4Desc": "All equipment we supply meets Egyptian regulatory requirements. Our inspection lane systems are fully compliant with traffic authority standards."
+  },
+  "cta": {
+    "heading": "Ready to Equip Your Workshop?",
+    "description": "Contact our team today for product demonstrations, pricing, and expert advice tailored to your operation.",
+    "button": "Get in Touch"
+  },
+  "about": {
+    "eyebrow": "Our Story",
+    "heading": "About Elbassiouni",
+    "intro": "For over 45 years, Elbassiouni Automotive Equipment has been the trusted partner of workshops, dealerships, and fleet operators across Egypt — bringing the world's best automotive equipment to the Egyptian market.",
+    "historyTitle": "Our History",
+    "historySubtitle": "Four decades of building Egypt's automotive service industry.",
+    "p1": "Founded in Cairo in 1980, Elbassiouni Automotive Equipment began as a specialist importer of professional workshop equipment, serving a market that was rapidly professionalizing its automotive service infrastructure.",
+    "p2": "Over the decades, we established exclusive agency agreements with the world's leading automotive equipment manufacturers — brands like Hunter Engineering, Rotary Lift, and Maha Haldenwang — becoming their dedicated representative in the Egyptian market.",
+    "p3": "Today, our portfolio spans 14 international brands across 6 equipment categories, covering everything from vehicle lifts and wheel alignment to spray booths and inspection lane systems.",
+    "p4": "Our after-sales division — covering installation, training, maintenance contracts, and spare parts — ensures that every piece of equipment we sell continues to perform at its best throughout its operational life.",
+    "milestonesTitle": "Key Milestones",
+    "valuesTitle": "Our Values",
+    "ctaHeading": "Let's Work Together",
+    "ctaButton": "Contact Our Team",
+    "m1980": "Elbassiouni founded in Cairo, Egypt",
+    "m1985": "First exclusive agency for a European automotive equipment brand",
+    "m1995": "Expanded to represent 5 international brands",
+    "m2005": "Launched inspection lane division, supplying government centers",
+    "m2015": "Portfolio grows to 10 premium international brands",
+    "m2024": "Representing 14 world-class brands across 6 equipment categories",
+    "m2026": "Continued commitment to equipping Egypt's automotive future",
+    "vQuality": "Quality",
+    "vQualityDesc": "We represent only manufacturers with proven track records and international certifications.",
+    "vPartnership": "Partnership",
+    "vPartnershipDesc": "We build long-term relationships with our clients, not just one-time transactions.",
+    "vExpertise": "Expertise",
+    "vExpertiseDesc": "Our team brings decades of hands-on knowledge in automotive workshop equipment.",
+    "vSupport": "Support",
+    "vSupportDesc": "We stand behind every product with comprehensive after-sales service and spare parts."
+  },
+  "services": {
+    "eyebrow": "After-Sales & Support",
+    "heading": "Our Services",
+    "intro": "We don't just supply equipment — we support it. Our after-sales team is with you from installation to end-of-life, ensuring peak performance every step of the way.",
+    "offerTitle": "What We Offer",
+    "offerSubtitle": "Six core service disciplines, delivered by our certified technical team.",
+    "ctaHeading": "Need a Service Quote?",
+    "ctaSubtitle": "Our team will respond within one business day.",
+    "ctaButton": "Contact Our Service Team"
+  },
+  "news": {
+    "heading": "News & Updates",
+    "subheading": "Company news, product launches, and industry updates.",
+    "readMore": "Read More",
+    "backToNews": "← Back to News",
+    "noContent": "No content available."
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "subheading": "Our team typically responds within one business day.",
+    "getInTouch": "Get in Touch",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "whatsappLabel": "WhatsApp",
+    "whatsappLink": "Message us on WhatsApp",
+    "addressLabel": "Address",
+    "formHeading": "Send Us a Message",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "Your email address",
+    "companyPlaceholder": "Company name (optional)",
+    "subjectLabel": "Subject",
+    "messagePlaceholder": "Tell us about your requirements...",
+    "submitButton": "Send Message",
+    "sending": "Sending...",
+    "successHeading": "Message Sent!",
+    "successMessage": "Thank you for reaching out. Our team will be in touch shortly.",
+    "errorPrefix": "Something went wrong.",
+    "s1": "Sales Inquiry",
+    "s2": "After-Sales Support",
+    "s3": "Inspection Lane",
+    "s4": "Training",
+    "s5": "Maintenance Contract",
+    "s6": "General Enquiry"
+  },
+  "footer": {
+    "tagline": "Egypt's premier distributor of premium automotive workshop equipment. 45+ years of expertise, 14 international brands.",
+    "productsCol": "Products",
+    "companyCol": "Company",
+    "contactCol": "Contact",
+    "copyright": "Elbassiouni Automotive Equipment. All rights reserved.",
+    "established": "Est. ~1980 · Cairo, Egypt",
+    "linkAbout": "About Us",
+    "linkServices": "Services",
+    "linkNews": "News",
+    "linkContact": "Contact"
+  }
+}
