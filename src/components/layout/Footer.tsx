@@ -23,7 +23,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Image
-              src="/logos/elbassiouni-white.svg"
+              src="/logos/elbassiouni-white.png"
               alt="Elbassiouni Automotive Equipment"
               width={180}
               height={45}
