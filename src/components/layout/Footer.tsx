@@ -1,9 +1,20 @@
 // src/components/layout/Footer.tsx
 import Link from 'next/link'
 import Image from 'next/image'
-import { categories } from '@/data/categories'
+import { client } from '@/sanity/lib/client'
+import { CATEGORIES_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import type { SanityCategory, SiteSettings } from '@/sanity/lib/types'
 
-export default function Footer() {
+export default async function Footer() {
+  const [categories, settings]: [SanityCategory[], SiteSettings | null] = await Promise.all([
+    client.fetch(CATEGORIES_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch(SITE_SETTINGS_QUERY, {}, { next: { revalidate: 3600 } }),
+  ])
+
+  const phone = settings?.phone ?? '+20 XX XXXX XXXX'
+  const email = settings?.email ?? 'info@elbassiouni.com'
+  const address = settings?.address ?? 'Cairo, Egypt'
+
   return (
     <footer className="bg-eb-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -65,15 +76,15 @@ export default function Footer() {
               Contact
             </h4>
             <address className="not-italic text-gray-400 text-sm space-y-2">
-              <p>Cairo, Egypt</p>
+              <p>{address}</p>
               <p>
-                <a href="tel:+20XXXXXXXXXX" className="hover:text-white transition-colors">
-                  +20 XX XXXX XXXX
+                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+                  {phone}
                 </a>
               </p>
               <p>
-                <a href="mailto:info@elbassiouni.com" className="hover:text-white transition-colors">
-                  info@elbassiouni.com
+                <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                  {email}
                 </a>
               </p>
             </address>
