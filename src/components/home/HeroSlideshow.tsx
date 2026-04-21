@@ -6,19 +6,19 @@ import Image from 'next/image'
 const SLIDES = [
   {
     src: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&q=80',
-    alt: 'Automotive workshop with vehicle lift equipment',
+    alt: '',
   },
   {
     src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80',
-    alt: 'Professional auto service technician at work',
+    alt: '',
   },
   {
     src: 'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80',
-    alt: 'Modern automotive service center',
+    alt: '',
   },
   {
     src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80',
-    alt: 'Precision automotive diagnostic equipment',
+    alt: '',
   },
 ]
 
@@ -37,7 +37,7 @@ export default function HeroSlideshow() {
       {SLIDES.map((slide, i) => (
         <div
           key={slide.src}
-          data-slide={i}
+          data-testid="hero-slide"
           className={`absolute inset-0 transition-opacity duration-1000 ${
             i === current ? 'opacity-100' : 'opacity-0'
           }`}

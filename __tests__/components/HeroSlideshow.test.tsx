@@ -11,12 +11,9 @@ describe('HeroSlideshow', () => {
     jest.useRealTimers()
   })
 
-  it('renders all slide images', () => {
-    render(<HeroSlideshow />)
-    expect(screen.getByAltText('Automotive workshop with vehicle lift equipment')).toBeInTheDocument()
-    expect(screen.getByAltText('Professional auto service technician at work')).toBeInTheDocument()
-    expect(screen.getByAltText('Modern automotive service center')).toBeInTheDocument()
-    expect(screen.getByAltText('Precision automotive diagnostic equipment')).toBeInTheDocument()
+  it('renders 4 slide elements', () => {
+    const { getAllByTestId } = render(<HeroSlideshow />)
+    expect(getAllByTestId('hero-slide')).toHaveLength(4)
   })
 
   it('cleans up the interval on unmount', () => {
@@ -28,17 +25,17 @@ describe('HeroSlideshow', () => {
   })
 
   it('advances the slide index after 5 seconds', () => {
-    render(<HeroSlideshow />)
-    // Grab the slide wrapper divs — all 4 are rendered
-    const slides = document.querySelectorAll('[data-slide]')
-    expect(slides[0].classList.contains('opacity-100')).toBe(true)
-    expect(slides[1].classList.contains('opacity-0')).toBe(true)
+    const { getAllByTestId } = render(<HeroSlideshow />)
+    const slides = getAllByTestId('hero-slide')
+
+    expect(slides[0]).toHaveClass('opacity-100')
+    expect(slides[1]).toHaveClass('opacity-0')
 
     act(() => {
       jest.advanceTimersByTime(5000)
     })
 
-    expect(slides[0].classList.contains('opacity-0')).toBe(true)
-    expect(slides[1].classList.contains('opacity-100')).toBe(true)
+    expect(slides[0]).toHaveClass('opacity-0')
+    expect(slides[1]).toHaveClass('opacity-100')
   })
 })
