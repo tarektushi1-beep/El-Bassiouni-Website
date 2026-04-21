@@ -1,15 +1,21 @@
 // src/app/services/page.tsx
 import type { Metadata } from 'next'
-import { services } from '@/data/services'
+import { client } from '@/sanity/lib/client'
+import { SERVICES_QUERY } from '@/sanity/lib/queries'
+import type { SanityService } from '@/sanity/lib/types'
 import SectionTitle from '@/components/ui/SectionTitle'
 import Button from '@/components/ui/Button'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Services',
   description: 'Professional after-sales support, installation, maintenance, training, calibration, and inspection lane services from Elbassiouni.',
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services: SanityService[] = await client.fetch(SERVICES_QUERY)
+
   return (
     <>
       <section className="bg-eb-black py-24">
@@ -27,7 +33,7 @@ export default function ServicesPage() {
           <SectionTitle title="What We Offer" subtitle="Six core service disciplines, delivered by our certified technical team." centered />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
-              <div key={service.id} className="border border-gray-200 p-8 hover:border-eb-red transition-colors">
+              <div key={service._id} className="border border-gray-200 p-8 hover:border-eb-red transition-colors">
                 <div className="text-4xl mb-6">{service.icon}</div>
                 <h2 className="font-aspire text-lg uppercase tracking-wide text-eb-black mb-4">{service.title}</h2>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">{service.description}</p>
