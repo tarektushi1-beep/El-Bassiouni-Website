@@ -1,17 +1,19 @@
 // src/components/layout/Footer.tsx
 import Link from 'next/link'
 import Image from 'next/image'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
 import { CATEGORIES_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import type { SanityCategory, SiteSettings } from '@/sanity/lib/types'
 
 export default async function Footer() {
-  const [categories, settings, t] = await Promise.all([
+  const [categories, settings, t, locale] = await Promise.all([
     client.fetch<SanityCategory[]>(CATEGORIES_QUERY, {}, { next: { revalidate: 3600 } }),
     client.fetch<SiteSettings | null>(SITE_SETTINGS_QUERY, {}, { next: { revalidate: 3600 } }),
     getTranslations('footer'),
+    getLocale(),
   ])
+  const p = locale === 'ar' ? '/ar' : ''
 
   const phone = settings?.phone ?? '+20 XX XXXX XXXX'
   const email = settings?.email ?? 'info@elbassiouni.com'
@@ -37,7 +39,7 @@ export default async function Footer() {
             <ul className="space-y-2">
               {categories.map((cat) => (
                 <li key={cat.slug}>
-                  <Link href={`products/${cat.slug}`} className="text-gray-400 text-sm hover:text-white transition-colors">
+                  <Link href={`${p}/products/${cat.slug}`} className="text-gray-400 text-sm hover:text-white transition-colors">
                     {cat.name}
                   </Link>
                 </li>
@@ -49,10 +51,10 @@ export default async function Footer() {
             <h4 className="font-aspire text-xs tracking-widest uppercase text-eb-red mb-4">{t('companyCol')}</h4>
             <ul className="space-y-2">
               {[
-                { label: t('linkAbout'), href: 'about' },
-                { label: t('linkServices'), href: 'services' },
-                { label: t('linkNews'), href: 'news' },
-                { label: t('linkContact'), href: 'contact' },
+                { label: t('linkAbout'), href: `${p}/about` },
+                { label: t('linkServices'), href: `${p}/services` },
+                { label: t('linkNews'), href: `${p}/news` },
+                { label: t('linkContact'), href: `${p}/contact` },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-gray-400 text-sm hover:text-white transition-colors">

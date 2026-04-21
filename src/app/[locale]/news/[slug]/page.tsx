@@ -43,7 +43,7 @@ export default async function NewsArticlePage({ params }: Props) {
             {t('backToNews')}
           </Link>
           <p className="font-aspire text-eb-red text-xs tracking-widest uppercase mb-4">
-            {new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            {new Date(article.date).toLocaleDateString(params.locale, { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
           <h1 className="font-aspire text-white text-4xl lg:text-5xl uppercase tracking-tight">{article.title}</h1>
         </div>

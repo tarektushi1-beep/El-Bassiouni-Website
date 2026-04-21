@@ -1,7 +1,7 @@
 // src/app/[locale]/news/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
 import { NEWS_ARTICLES_QUERY } from '@/sanity/lib/queries'
 import type { SanityNewsArticle } from '@/sanity/lib/types'
@@ -10,9 +10,10 @@ export const revalidate = 3600
 export const metadata: Metadata = { title: 'News' }
 
 export default async function NewsPage() {
-  const [articles, t] = await Promise.all([
+  const [articles, t, locale] = await Promise.all([
     client.fetch<SanityNewsArticle[]>(NEWS_ARTICLES_QUERY),
     getTranslations('news'),
+    getLocale(),
   ])
 
   return (
@@ -33,7 +34,7 @@ export default async function NewsPage() {
                 </div>
                 <div className="p-6">
                   <p className="font-aspire text-eb-red text-xs tracking-widest uppercase mb-3">
-                    {new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(article.date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
                   </p>
                   <h2 className="font-aspire text-lg uppercase tracking-wide text-eb-black group-hover:text-eb-red transition-colors mb-3">{article.title}</h2>
                   <p className="text-gray-500 text-sm leading-relaxed">{article.excerpt}</p>
