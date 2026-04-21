@@ -11,7 +11,7 @@ import Button from '@/components/ui/Button'
 export const revalidate = 3600
 
 interface Props {
-  params: { slug: string }
+  params: { slug: string; locale: string }
 }
 
 const getArticle = cache((slug: string) =>
@@ -20,7 +20,7 @@ const getArticle = cache((slug: string) =>
 
 export async function generateStaticParams() {
   const slugs: string[] = await client.fetch(NEWS_SLUGS_QUERY)
-  return slugs.map((slug) => ({ slug }))
+  return ['en', 'ar'].flatMap((locale) => slugs.map((slug) => ({ locale, slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
