@@ -1,15 +1,21 @@
 // src/app/products/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { categories } from '@/data/categories'
+import { client } from '@/sanity/lib/client'
+import { CATEGORIES_QUERY } from '@/sanity/lib/queries'
+import type { SanityCategory } from '@/sanity/lib/types'
 import SectionTitle from '@/components/ui/SectionTitle'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Products',
   description: 'Browse 14 premium automotive equipment brands across 6 categories — all available through Elbassiouni in Egypt.',
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const categories: SanityCategory[] = await client.fetch(CATEGORIES_QUERY)
+
   return (
     <>
       <section className="bg-eb-black py-20">

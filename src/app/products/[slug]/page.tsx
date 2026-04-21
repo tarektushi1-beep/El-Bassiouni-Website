@@ -1,27 +1,37 @@
 // src/app/products/[slug]/page.tsx
+import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { categories, getCategoryBySlug } from '@/data/categories'
+import { client } from '@/sanity/lib/client'
+import { CATEGORY_QUERY, CATEGORY_SLUGS_QUERY } from '@/sanity/lib/queries'
+import type { SanityCategory } from '@/sanity/lib/types'
 import CategoryHero from '@/components/products/CategoryHero'
 import BrandCard from '@/components/products/BrandCard'
 import Button from '@/components/ui/Button'
+
+export const revalidate = 3600
 
 interface Props {
   params: { slug: string }
 }
 
-export function generateStaticParams() {
-  return categories.map((cat) => ({ slug: cat.slug }))
+const getCategory = cache((slug: string) =>
+  client.fetch<SanityCategory | null>(CATEGORY_QUERY, { slug })
+)
+
+export async function generateStaticParams() {
+  const slugs: string[] = await client.fetch(CATEGORY_SLUGS_QUERY)
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const category = getCategoryBySlug(params.slug)
+  const category = await getCategory(params.slug)
   if (!category) return {}
   return { title: category.name, description: category.description }
 }
 
-export default function CategoryPage({ params }: Props) {
-  const category = getCategoryBySlug(params.slug)
+export default async function CategoryPage({ params }: Props) {
+  const category = await getCategory(params.slug)
   if (!category) notFound()
 
   return (

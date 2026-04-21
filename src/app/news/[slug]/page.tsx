@@ -1,25 +1,36 @@
 // src/app/news/[slug]/page.tsx
+import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { newsArticles, getArticleBySlug } from '@/data/news'
+import { PortableText } from '@portabletext/react'
+import { client } from '@/sanity/lib/client'
+import { NEWS_ARTICLE_QUERY, NEWS_SLUGS_QUERY } from '@/sanity/lib/queries'
+import type { SanityNewsArticle } from '@/sanity/lib/types'
 import Button from '@/components/ui/Button'
+
+export const revalidate = 3600
 
 interface Props {
   params: { slug: string }
 }
 
-export function generateStaticParams() {
-  return newsArticles.map((a) => ({ slug: a.slug }))
+const getArticle = cache((slug: string) =>
+  client.fetch<SanityNewsArticle | null>(NEWS_ARTICLE_QUERY, { slug })
+)
+
+export async function generateStaticParams() {
+  const slugs: string[] = await client.fetch(NEWS_SLUGS_QUERY)
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = getArticleBySlug(params.slug)
+  const article = await getArticle(params.slug)
   if (!article) return {}
   return { title: article.title, description: article.excerpt }
 }
 
-export default function NewsArticlePage({ params }: Props) {
-  const article = getArticleBySlug(params.slug)
+export default async function NewsArticlePage({ params }: Props) {
+  const article = await getArticle(params.slug)
   if (!article) notFound()
 
   return (
@@ -34,10 +45,13 @@ export default function NewsArticlePage({ params }: Props) {
       </section>
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="prose prose-gray max-w-none text-gray-700 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
+          {article.content && article.content.length > 0 ? (
+            <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed">
+              <PortableText value={article.content as Parameters<typeof PortableText>[0]['value']} />
+            </div>
+          ) : (
+            <p className="text-gray-500 italic">Article content not yet available.</p>
+          )}
           <div className="mt-12 pt-8 border-t border-gray-200">
             <Button href="/news" variant="outline-dark" size="md">← Back to News</Button>
           </div>

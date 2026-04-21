@@ -1,14 +1,20 @@
 // src/app/news/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { newsArticles } from '@/data/news'
+import { client } from '@/sanity/lib/client'
+import { NEWS_ARTICLES_QUERY } from '@/sanity/lib/queries'
+import type { SanityNewsArticle } from '@/sanity/lib/types'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'News',
   description: 'Latest news, product launches, and industry updates from Elbassiouni Automotive Equipment.',
 }
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const articles: SanityNewsArticle[] = await client.fetch(NEWS_ARTICLES_QUERY)
+
   return (
     <>
       <section className="bg-eb-black py-20">
@@ -20,7 +26,7 @@ export default function NewsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {newsArticles.map((article) => (
+            {articles.map((article) => (
               <Link key={article.slug} href={`/news/${article.slug}`} className="group block border border-gray-200 hover:border-eb-red transition-colors">
                 <div className="bg-eb-gray h-48 flex items-center justify-center">
                   <span className="font-aspire text-gray-600 text-xs tracking-wider uppercase">{article.category}</span>

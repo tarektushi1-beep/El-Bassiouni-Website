@@ -1,12 +1,21 @@
 // src/components/layout/WhatsAppButton.tsx
+import { client } from '@/sanity/lib/client'
+import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import type { SiteSettings } from '@/sanity/lib/types'
 
-const WHATSAPP_NUMBER = 'REPLACE_WITH_ACTUAL_NUMBER'
 const WHATSAPP_MESSAGE = encodeURIComponent('Hello, I would like to inquire about your automotive equipment.')
 
-export default function WhatsAppButton() {
+export default async function WhatsAppButton() {
+  const settings: SiteSettings | null = await client.fetch(
+    SITE_SETTINGS_QUERY,
+    {},
+    { next: { revalidate: 3600 } }
+  )
+  const number = settings?.whatsappNumber ?? 'REPLACE_WITH_ACTUAL_NUMBER'
+
   return (
     <a
-      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+      href={`https://wa.me/${number}?text=${WHATSAPP_MESSAGE}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

@@ -1,9 +1,13 @@
 // src/components/home/CategoryCards.tsx
 import Link from 'next/link'
-import { categories } from '@/data/categories'
+import type { SanityCategory } from '@/sanity/lib/types'
 import SectionTitle from '@/components/ui/SectionTitle'
 
-export default function CategoryCards() {
+interface CategoryCardsProps {
+  categories: SanityCategory[]
+}
+
+export default function CategoryCards({ categories }: CategoryCardsProps) {
   return (
     <section className="py-24 bg-eb-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

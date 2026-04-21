@@ -1,9 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter, Orbitron } from 'next/font/google'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import WhatsAppButton from '@/components/layout/WhatsAppButton'
+import SiteChrome from '@/components/layout/SiteChrome'
 import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -23,10 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.variable} ${orbitron.variable} font-body`}>
-        <Navbar />
-        <main className="pt-20">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   )

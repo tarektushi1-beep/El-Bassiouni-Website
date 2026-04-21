@@ -1,15 +1,27 @@
 // src/components/products/BrandCard.tsx
 import Link from 'next/link'
-import type { Brand } from '@/data/categories'
+import Image from 'next/image'
+import type { SanityBrand, SanityImageAsset } from '@/sanity/lib/types'
+import { urlFor } from '@/sanity/lib/image'
 
 interface BrandCardProps {
-  brand: Brand
+  brand: SanityBrand
 }
 
 export default function BrandCard({ brand }: BrandCardProps) {
   return (
     <div className="border border-gray-200 bg-white hover:border-eb-red transition-colors">
-      <div className="bg-eb-black px-8 py-6">
+      <div className="bg-eb-black px-8 py-6 flex items-center gap-4">
+        {brand.logo && (
+          <div className="relative w-16 h-10 flex-shrink-0">
+            <Image
+              src={urlFor(brand.logo as SanityImageAsset).width(128).height(80).url()}
+              alt={`${brand.name} logo`}
+              fill
+              className="object-contain"
+            />
+          </div>
+        )}
         <h2 className="font-aspire text-white text-2xl uppercase tracking-wide">{brand.name}</h2>
       </div>
       <div className="p-8">
