@@ -7,14 +7,14 @@ const config: Config = {
     extend: {
       colors: {
         'eb-black': '#000000',
-        'eb-red': '#B0302D',
+        'eb-red': '#DE0024',
         'eb-white': '#FFFFFF',
         'eb-gray': '#1a1a1a',
         'eb-light': '#f5f5f5',
       },
       fontFamily: {
         aspire: ['Aspire', 'Orbitron', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        body: ['Somar Sans', 'Inter', 'sans-serif'],
       },
       keyframes: {
         marquee: {

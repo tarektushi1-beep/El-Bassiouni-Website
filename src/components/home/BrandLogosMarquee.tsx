@@ -1,26 +1,33 @@
-// src/components/home/BrandLogosMarquee.tsx
 import { getTranslations } from 'next-intl/server'
-import type { SanityBrand } from '@/sanity/lib/types'
+import { categories } from '@/data/categories'
 
-interface BrandLogosMarqueeProps {
-  brands: SanityBrand[]
-}
-
-export default async function BrandLogosMarquee({ brands }: BrandLogosMarqueeProps) {
+export default async function BrandLogosMarquee() {
   const t = await getTranslations('brands')
+  const allBrands = categories.flatMap((cat) => cat.brands)
 
   return (
-    <section className="bg-eb-gray py-12 overflow-hidden">
-      <p className="text-center font-aspire text-xs tracking-[0.3em] uppercase text-gray-500 mb-8">
+    <section className="bg-white py-14 overflow-hidden border-t border-b border-gray-100">
+      <p className="text-center font-aspire text-xs tracking-[0.3em] uppercase text-gray-400 mb-10">
         {t('heading')}
       </p>
       <div className="flex animate-marquee whitespace-nowrap">
-        {[...brands, ...brands].map((brand, i) => (
+        {[...allBrands, ...allBrands].map((brand, i) => (
           <div
             key={`${brand.slug}-${i}`}
-            className="inline-flex items-center mx-12 text-gray-400 hover:text-white transition-colors"
+            className="inline-flex items-center justify-center mx-12 min-w-[160px] group"
           >
-            <span className="font-aspire text-sm tracking-wider uppercase">{brand.name}</span>
+            {brand.logoPlaceholder ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={brand.logoPlaceholder}
+                alt={brand.name}
+                className="w-[176px] h-[70px] object-contain"
+              />
+            ) : (
+              <span className="font-aspire text-xs tracking-widest uppercase text-gray-400 group-hover:text-eb-black transition-colors">
+                {brand.name}
+              </span>
+            )}
           </div>
         ))}
       </div>

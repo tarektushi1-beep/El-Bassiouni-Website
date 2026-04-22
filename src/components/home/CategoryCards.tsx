@@ -1,39 +1,49 @@
-// src/components/home/CategoryCards.tsx
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
-import type { SanityCategory } from '@/sanity/lib/types'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { categories } from '@/data/categories'
 import SectionTitle from '@/components/ui/SectionTitle'
 
-interface CategoryCardsProps {
-  categories: SanityCategory[]
-}
-
-export default async function CategoryCards({ categories }: CategoryCardsProps) {
+export default async function CategoryCards() {
   const t = await getTranslations('categories')
+  const locale = await getLocale()
+  const prefix = locale === 'ar' ? '/ar' : ''
 
   return (
-    <section className="py-24 bg-eb-white">
+    <section className="bg-eb-black py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title={t('heading')}
           subtitle={t('subheading')}
           centered
+          light
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((cat) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-800">
+          {categories.map((cat, index) => (
             <Link
               key={cat.slug}
-              href={`products/${cat.slug}`}
-              className="group block border border-gray-200 hover:border-eb-red transition-all duration-300 p-8 hover:shadow-lg"
+              href={`${prefix}/products/${cat.slug}`}
+              className="group relative bg-eb-black p-8 min-h-[280px] flex flex-col justify-between hover:bg-[#111] transition-colors duration-300"
             >
-              <h3 className="font-aspire text-xl uppercase tracking-wide text-eb-black group-hover:text-eb-red transition-colors mb-3">
-                {cat.name}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6">{cat.tagline}</p>
-              <span className="font-aspire text-xs tracking-widest uppercase text-eb-red flex items-center gap-2">
-                {t('viewBrands')}
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </span>
+              {/* Top */}
+              <div className="flex items-start justify-between">
+                <span className="font-aspire text-5xl font-bold text-gray-900 leading-none select-none">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="font-aspire text-xs tracking-widest uppercase text-gray-600 group-hover:text-eb-red transition-colors pt-1">
+                  {t('viewBrands')} →
+                </span>
+              </div>
+
+              {/* Bottom */}
+              <div>
+                <div className="w-8 h-px bg-eb-red mb-4" />
+                <h3 className="font-aspire text-white text-lg uppercase tracking-wide mb-2 group-hover:text-eb-red transition-colors duration-200">
+                  {cat.name}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {cat.tagline}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

@@ -30,7 +30,7 @@ export const categories: Category[] = [
       {
         name: 'Rotary Lift',
         slug: 'rotary-lift',
-        logoPlaceholder: '/logos/brands/rotary-lift.png',
+        logoPlaceholder: '/logos/brands/rotary-lift.jpg',
         description:
           "The world's largest manufacturer of vehicle lifts, Rotary Lift has been the trusted choice of professional technicians since 1925. Their range covers two-post, four-post, scissor, and mobile column lifts engineered for reliability and safety.",
         products: [
@@ -53,7 +53,7 @@ export const categories: Category[] = [
           'Four-Post Lifts',
           'Parallelogram Lifts',
         ],
-        website: 'https://www.real-lifts.com',
+        website: 'https://www.realengasia.com',
       },
       {
         name: 'Finkbeiner',
@@ -158,20 +158,6 @@ export const categories: Category[] = [
         ],
         website: 'https://www.ecotechnics.eu',
       },
-      {
-        name: 'Weaco by Dometic',
-        slug: 'weaco-dometic',
-        logoPlaceholder: '/logos/brands/weaco.png',
-        description:
-          'Weaco, part of the Dometic Group, provides professional automotive A/C service solutions trusted by workshops and OEM service centers worldwide. Their product range covers service stations, refrigerant analyzers, and complete A/C diagnostic systems.',
-        products: [
-          'A/C Service Stations',
-          'Refrigerant Analyzers',
-          'Compressor Oil Injectors',
-          'A/C System Flushers',
-        ],
-        website: 'https://www.dometic.com/weaco',
-      },
     ],
   },
   {
@@ -209,12 +195,12 @@ export const categories: Category[] = [
           'Plasma Cutters',
           'Battery Chargers',
         ],
-        website: 'https://www.decastudio.it/en',
+        website: 'https://www.decaweld.com/en/',
       },
       {
         name: 'Wedgeclamp',
         slug: 'wedgeclamp',
-        logoPlaceholder: '/logos/brands/wedgeclamp.png',
+        logoPlaceholder: '',
         description:
           'Wedgeclamp systems deliver professional vehicle body and frame straightening solutions. Their modular bench systems and clamping technology allow precise multi-directional pulling for accurate structural repair on all vehicle types.',
         products: [
@@ -228,7 +214,7 @@ export const categories: Category[] = [
       {
         name: 'Chief Automotive (USA)',
         slug: 'chief-usa',
-        logoPlaceholder: '/logos/brands/chief.png',
+        logoPlaceholder: '/logos/brands/chief-usa.png',
         description:
           "Chief Automotive Technologies is North America's leading brand of vehicle measuring and straightening equipment. Their Genesis and Goliath systems provide the accuracy and repeatability demanded by certified collision repair centers.",
         products: [
@@ -243,16 +229,16 @@ export const categories: Category[] = [
   },
   {
     slug: 'hand-tools',
-    name: 'Hand Tools & Workshop Equipment',
+    name: 'Handtools & Cleaning Equipment',
     tagline: 'Built for Professionals, Built to Last',
     description:
-      'Professional-grade hand tools and workshop equipment trusted by technicians who demand precision, durability, and ergonomic performance every day.',
+      'Professional-grade hand tools and cleaning equipment trusted by technicians who demand precision, durability, and performance every day — including world-class Kärcher cleaning solutions.',
     imagePlaceholder: '/images/categories/hand-tools.jpg',
     brands: [
       {
         name: 'Polar Hand Tools',
         slug: 'polar-tools',
-        logoPlaceholder: '/logos/brands/polar.png',
+        logoPlaceholder: '/logos/brands/polar.jpg',
         description:
           'Polar delivers a comprehensive range of professional-grade hand tools and tool storage solutions. Manufactured to exceed international quality standards, Polar tools are the choice of demanding automotive technicians who rely on their tools daily.',
         products: [
@@ -268,7 +254,7 @@ export const categories: Category[] = [
       {
         name: 'Romess Tools',
         slug: 'romess',
-        logoPlaceholder: '/logos/brands/romess.png',
+        logoPlaceholder: '/logos/brands/romess.jpg',
         description:
           'Romess is a German specialist in professional workshop tools and specialty measuring instruments. Their product range focuses on precision torque tools, specialty automotive tools, and workshop equipment built to DIN standards.',
         products: [
@@ -278,6 +264,22 @@ export const categories: Category[] = [
           'Workshop Equipment',
         ],
         website: 'https://www.romess.de/en',
+      },
+      {
+        name: 'Kärcher',
+        slug: 'karcher',
+        logoPlaceholder: '/logos/brands/karcher.png',
+        description:
+          'As the official automotive dealer for Kärcher across all workshops in Egypt, we supply the full range of Kärcher professional cleaning equipment. From high-pressure washers to steam cleaners and vacuum systems, Kärcher delivers world-leading cleaning performance built for demanding workshop environments.',
+        products: [
+          'High-Pressure Washers',
+          'Steam Cleaners',
+          'Wet & Dry Vacuum Cleaners',
+          'Vehicle Interior Cleaners',
+          'Pressure Washer Accessories',
+          'Detergents & Cleaning Agents',
+        ],
+        website: 'https://www.kaercher.com/int/',
       },
     ],
   },

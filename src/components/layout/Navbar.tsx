@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import { categories } from '@/data/categories'
 
@@ -11,6 +12,10 @@ export default function Navbar() {
   const t = useTranslations('nav')
   const locale = useLocale()
   const prefix = locale === 'ar' ? '/ar' : ''
+  const pathname = usePathname()
+  const switchHref = locale === 'ar'
+    ? pathname.replace(/^\/ar/, '') || '/'
+    : `/ar${pathname}`
 
   const [mobileOpen, setMobileOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
@@ -23,6 +28,9 @@ export default function Navbar() {
     { label: t('contact'), href: `${prefix}/contact` },
   ]
 
+  const flagSrc = locale === 'ar' ? '/flags/en.png' : '/flags/ar.png'
+  const flagAlt = locale === 'ar' ? 'Switch to English' : 'Switch to Arabic'
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-eb-black">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,8 +41,9 @@ export default function Navbar() {
               src="/logos/elbassiouni-white.png"
               alt="Elbassiouni Automotive Equipment"
               width={240}
-              height={60}
+              height={70}
               priority
+              className="w-auto h-[62px]"
             />
           </Link>
 
@@ -88,18 +97,40 @@ export default function Navbar() {
             <Link href={`${prefix}/contact`} className="bg-eb-red text-white font-aspire text-sm tracking-wider uppercase px-5 py-2 hover:bg-red-800 transition-colors">
               {t('contact')}
             </Link>
+
+            {/* Language switcher — flag icon */}
+            <Link href={switchHref} className="flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity">
+              <Image
+                src={flagSrc}
+                alt={flagAlt}
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+            </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-white p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="w-6 h-0.5 bg-white mb-1.5" />
-            <div className="w-6 h-0.5 bg-white mb-1.5" />
-            <div className="w-6 h-0.5 bg-white" />
-          </button>
+          {/* Mobile: flag + hamburger */}
+          <div className="lg:hidden flex items-center gap-3">
+            <Link href={switchHref} className="opacity-80 hover:opacity-100 transition-opacity">
+              <Image
+                src={flagSrc}
+                alt={flagAlt}
+                width={28}
+                height={28}
+                className="rounded-full"
+              />
+            </Link>
+            <button
+              className="text-white p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-0.5 bg-white mb-1.5" />
+              <div className="w-6 h-0.5 bg-white mb-1.5" />
+              <div className="w-6 h-0.5 bg-white" />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
