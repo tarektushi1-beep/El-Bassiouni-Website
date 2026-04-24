@@ -36,3 +36,6 @@ yarn-error.log*
 next-env.d.ts
 .worktrees
 .superpowers
+
+# internal: employee roster hard-coded — keep local
+scripts/portable-profile.mjs

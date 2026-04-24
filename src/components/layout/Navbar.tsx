@@ -57,7 +57,11 @@ export default function Navbar() {
             </Link>
 
             {/* Products Dropdown */}
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={() => setProductsOpen(true)}
+              onMouseLeave={() => setProductsOpen(false)}
+            >
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
                 className="text-white font-aspire text-sm tracking-wider uppercase hover:text-eb-red transition-colors flex items-center gap-1"
@@ -66,24 +70,26 @@ export default function Navbar() {
                 <span className="text-xs">▾</span>
               </button>
               {productsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-eb-black border border-gray-800 shadow-xl">
-                  <Link
-                    href={`${prefix}/products`}
-                    onClick={() => setProductsOpen(false)}
-                    className="block px-4 py-3 text-white font-aspire text-xs tracking-wider uppercase hover:bg-eb-red transition-colors border-b border-gray-800"
-                  >
-                    {t('allCategories')}
-                  </Link>
-                  {categories.map((cat) => (
+                <div className="absolute top-full left-0 w-64 pt-2">
+                  <div className="bg-eb-black border border-gray-800 shadow-xl">
                     <Link
-                      key={cat.slug}
-                      href={`${prefix}/products/${cat.slug}`}
+                      href={`${prefix}/products`}
                       onClick={() => setProductsOpen(false)}
-                      className="block px-4 py-3 text-gray-300 text-sm hover:bg-eb-red hover:text-white transition-colors"
+                      className="block px-4 py-3 text-white font-aspire text-xs tracking-wider uppercase hover:bg-eb-red transition-colors border-b border-gray-800"
                     >
-                      {cat.name}
+                      {t('allCategories')}
                     </Link>
-                  ))}
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.slug}
+                        href={`${prefix}/products/${cat.slug}`}
+                        onClick={() => setProductsOpen(false)}
+                        className="block px-4 py-3 text-gray-300 text-sm hover:bg-eb-red hover:text-white transition-colors"
+                      >
+                        {cat.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
